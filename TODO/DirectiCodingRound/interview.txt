@@ -1,0 +1,53 @@
+#### DirectI Interview Experience ####
+( Hope this helps you all who are appearing for the Directi. All the best! )
+
+TL;DR: Read last line
+
+Interview Process:
+1. Coding Round on CodeChef (have to solve 2 questions out of 3)
+2. Three Algorithm Rounds (have to clear 2 interviews with utter confidence)
+3. Technical Round
+4. Design Round (No it's not an HR round)
+
+There is no HR round
+-----------------------------------------------------------------------
+1.) Three coding problems (see attachment) : (90 mins)
+i) Party Count ii) Insertion Sort (no it is not that) iii) Matrix Path
+-----------------------------------------------------------------------
+2. Algorithm Rounds(45 mins each)
+i) You have been given a string which is a level order traversal of a Tree. Find height of the tree. Conditions by which string was formed is as: if node has left child only then 10, if node has right child only, 01, if node have both children then 11 and if no child then 00. So 1110010000 represents tree of height 2 [Tree being : 1->2, 1->3, 2->4(left child of 2) and 3->5(right child of 3)].
+
+ii) You have been given an array which can have N (<= 10^6) numbers from 1 to 10^9 in any random order, you have to find the longest continuous streak size of a number. for example if given array is 1,12,7,4,5,2,8,11,9,10,3 then answer is 6 (7,8,9,10,11,12). Answer can be in O(n) very easily if you have Ai <= 10^6 :p
+
+No third algorithm round :D
+-----------------------------------------------------------------------
+3. Technical Interview (45 mins)
+i) Tell me about yourself
+ii) Asked some questions about OS like, what is thread safe applications, how can you make thread safe application, what is synchronization, why you need synchronization
+iii) DB: what databases have you used? Answer: MySQL, PostgreSQL and MongoDB. Interestingly screwed my interview because of MongoDB. He asked features of NoSQL then, and I was not remembering name but just concepts, so I explain what is unique in MongoDB and how it is beneficial, but then he asked me about "Sharding" I didn't remember the term so I passed it. Then said I have not done much in MongoDB and passed it :P (passed as in move forward not correct)
+iv) He was now sure I am lying again and again in Interview, so he asked me 2-3 tricky questions of Python (as I mentioned during (i) I am a python dev) I guess confidence in these answers made the trick.
+v) He gave a real life problem: If I am getting data 1GB/minute how will I manage it and store it. I explained him, by making replicas and storing in chunks, he repeated what is Sharding? I said I don't know, He said laughed and said, this is Sharding!
+-----------------------------------------------------------------------
+4. Design Round Interview (1 hr)
+I was pretty sure that this round is going to be easy as this is HR round. But I was surprised by what happened next.
+i) Tell me about yourself (made me believed now its HR :P )
+ii) I again boasted about Python, so he asked me difference in Python and C++ I told everything whatever I was able to recollect and see ( like indentation, short codes, packages, libraries, interpretation etc) he said except compilation what makes python different from C++, to that I said indentation (idiot me), he said you're missing very important thing, he then pointed out Data Type. Then I said, python is dynamic typed and c++ is static typed language.
+He: So how does var x = 1, var y = "abc" and var z = 1.03 works?
+Me: During compile time data type is assigned to variables like, x is given int, y is given string, z is given float or dbl, and when some illegal operation is performed then it gives runtime error.
+He: Are you sure that variables x,y,z will have data type information?
+Me (Quite confident): Yes!
+He: Wrong, corrected me, told me in Dynamic Typed languages data type information is in values not variables, I tried to understand, then he gave example and then got that point. (note : In static data type information is with variable coz we have declared it as : int x, string y, float z)
+Me: Ok
+He: Now since you know python is built in C, so can you make a library for C++ in which there is no static typing, it should provide dynamic typing, and other developers can use it.
+Me: Shocked.
+He: Don't write pseudo code, give a working code
+Me: Troubling
+He: Write methods for operator overloading (i.e., + - / * methods by own)
+Me: Don't know how to do that
+He: okay write simple methods like add() subtract(), should work with add(1 , 1.03) and should throw Runtime error in add(1 , "abc")
+Me: Troubling!
+He: Lastly, Do you have any question?
+Me: Asked about many things, like work atmosphere, work type, my responsibilities, growth, freedom for tech stack, etc.
+-----------------------------------------------------------------------
+
+Instead of replying to messages personally, here it is!

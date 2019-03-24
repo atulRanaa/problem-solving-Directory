@@ -1,0 +1,24 @@
+Kumar is very excited for his Valentine's day but at the same time he is afraid about the demands of his date.
+All was going good, but at last they ordered wine, waiter offered x and y unit glasses, here she got him, she said "I will drink only z unit, it's a crime not to eat a rare steak without a good glass of red wine".
+He has to do it quick, he does't want embarrass calling for other glasses, or making other excuses.
+
+
+Input
+
+First line contains x and y.(space separated integers)
+Next line contains q number of possible value of z his date can demand.
+Next q line contains value of z.
+
+Output
+
+For each z,output the minimum step required to serve z unit of wine with availaible glasses
+or output "Damn!!" if can't serve.
+
+Format for output
+Case <ith query>: <output>
+
+Constraints
+
+0 <= x,y <= 1000
+0 <= z <= 2000
+

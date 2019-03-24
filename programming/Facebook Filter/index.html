@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <!-- <link rel="stylesheet" href="load.css"> -->
+        <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+        <meta name="author" content="_________ , _________">
+        <title>Facebook Filter</title>
+        <!-- jQuery library -->
+ 		<link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <div class="page-header">
+            <h1 style="color:#ffa413; text-align: center;">Facebook Filter</h1>
+        </div>
+        <hr style="display:block; width:100%; border-color:transparent;">
+        <div id="baap" class="container" style="display:none;">
+            <div class="col-md-6 " style="">
+                <center>
+                    <a href="#" id="download">
+                        <canvas id="myCanvas" style="border:1px solid #d3d3d3;">
+                            Your browser does not support the HTML5 canvas tag. Please update your browser.
+                        </canvas>
+                    </a>
+                </center>
+            </div>
+            <div class="col-md-6 " style="">
+                <hr style="display:block;">
+                <h3 style="color:#efefef;"><i>Instructions:-</i></h3>
+                <hr style="display:block;">
+                <ul type="square" class="instructions">
+                    <li>Click on the image to download it.</li>
+                    <li>As facebook doesn&#39;t allow any app to change profile-picture directly without special permissions, you have to manually change your profile picture. </li>
+                </ul>
+                <hr style="display:block; border-color:transparent;">
+                <p style="font-size:0.9em; color:#dedede; text-align:center;">
+                    <i>Developed by</i> <a href="#" target="_blank">________&nbsp;_______</a> <i>and</i> <a href="#" target="_blank">_______&nbsp;_______</a>
+                </p>
+            </div>
+        </div>
+        <hr style="border-color:transparent; clear:both; width:100%;">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
+        <script src="js/script.js"> </script>
+        
+        <!-- 
+	 		* You can connect this app with facebook and fetch users
+	 		* display picture using graph api
+	 	--> 
+	 	<script>
+			imageWidth = "500";
+			imageHeight = "500";
+			canvasHeight = "500";
+			canvasWidth = "500";
+			imageSrc = "filters/test.jpg";
+			filterSource = "filters/filter.png";
+			setFacebookFilter(imageWidth,imageHeight,canvasWidth,canvasHeight,filterSource,imageSrc);
+        </script>
+    </body>
+</html>

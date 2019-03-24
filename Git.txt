@@ -1,0 +1,27 @@
+git init
+git add
+git status
+git commit
+
+git push
+git pull
+git clone
+git--version
+
+
+git config --global user.name 'Atul Rana'
+git config --global user.email 'ranaatul61@gmail.com'
+
+
+git add .
+git commit -m 'Message'
+
+
+
+touch .gitignore
+*.pdf
+
+
+git checkout
+
+git remote

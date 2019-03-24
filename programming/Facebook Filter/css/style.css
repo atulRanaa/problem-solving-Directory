@@ -1,0 +1,34 @@
+html{
+      height:100%;
+}
+body{
+      background: -webkit-linear-gradient(#212731, #23293C, #212731);
+      background: -moz-linear-gradient(#212731, #23293C, #212731);
+      background: -ms-linear-gradient(#212731, #23293C, #212731);
+      background: linear-gradient(#212731, #23293C, #212731);
+      position:relative;
+      height:100%;
+}
+a:link{
+      color:#ffa413;
+      text-decoration:none;
+}
+a:visited{
+      color:#ffa413;
+      text-decoration:none;
+}
+a:hover{
+      color:yellow;
+      text-decoration:none;
+}
+a:active{
+      color:#ffa413;
+      text-decoration:none;
+}
+.instructions{
+      text-align:justify;
+      color:#efefef;
+      font-size:1.1em;
+      line-height:2em;
+      font-family:Roboto;
+}

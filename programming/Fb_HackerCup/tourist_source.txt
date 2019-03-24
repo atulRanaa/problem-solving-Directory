@@ -1,0 +1,60 @@
+#include <cstdio>
+#include <cmath>
+#include <iostream>
+#include <set>
+#include <algorithm>
+#include <vector>
+#include <map>
+#include <cassert>
+#include <string>
+#include <cstring>
+#include <queue>
+
+using namespace std;
+
+#define rep(i,a,b) for(int i = a; i < b; i++)
+#define S(x) scanf("%d",&x)
+#define S2(x,y) scanf("%d%d",&x,&y)
+#define P(x) printf("%d\n",x)
+#define all(v) v.begin(),v.end()
+#define FF first
+#define SS second
+#define pb push_back
+#define mp make_pair
+
+typedef long long int LL;
+typedef pair<int, int > pii;
+typedef vector<int > vi;
+
+const int N = 55;
+
+string s[N];
+
+int main() {
+  int tc;
+  S(tc);
+  rep(t,1,tc+1) {
+    printf("Case #%d: ",t);
+    int n,k;
+    LL v;
+    scanf("%d%d%lld",&n,&k,&v);
+    rep(i,0,n) cin >> s[i];
+    int st = ((v - 1) * k) % n;
+    int en = (st + k - 1 + n) % n;
+    if(en >= st) {
+      while(st <= en) {
+        cout << s[st] << " ";
+        st++;
+      }
+    } else {
+      rep(i,0,en+1) {
+        cout << s[i] << " ";
+      }
+      rep(i,st,n) {
+        cout << s[i] << " ";
+      }
+    }
+    cout << "\n";
+  }
+  return 0;
+}

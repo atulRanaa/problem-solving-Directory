@@ -1,0 +1,6 @@
+s = set(raw_input())
+s.discard(' ')
+s.discard('{')
+s.discard('}')
+s.discard(',')
+print len(s)

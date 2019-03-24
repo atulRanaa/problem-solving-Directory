@@ -1,0 +1,8 @@
+if you take some set of points on a circle,
+you connect every pair of them with a line,
+find the maximum number of sections do these
+lines cut the circle into?
+
+<a href="https://imageresize.org/view/349cc1af-8f13-4752-834a-dced2570f63c" target="_blank"><img src="https://u.imageresize.org/v2/349cc1af-8f13-4752-834a-dced2570f63c.png" title="Resized using imageresize.org" border="0" /></a>
+
+<a href="https://imageresize.org/view/a8ce9558-5e26-4733-a15e-812c0918f1e8" target="_blank"><img src="https://u.imageresize.org/v2/a8ce9558-5e26-4733-a15e-812c0918f1e8.png" title="Resized using imageresize.org" border="0" /></a>
