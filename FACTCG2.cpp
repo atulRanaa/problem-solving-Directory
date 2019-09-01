@@ -9,7 +9,7 @@
         #define all(x) x.begin(),x.end()
         #define pii pair<int,int>
         #define pis pair<ll,string>
-        #define F first
+        #define Fac first
         #define S second
         #define LCM(a,b) ((a*b)/__gcd(a,b))
         #define inf 1e15
