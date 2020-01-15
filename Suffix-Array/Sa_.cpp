@@ -1,131 +1,71 @@
-#include <bits/stdc++.h>
-#define INF 0x7fffffff
-#define INFLL 1e17
-#define PI 2*acos(0.0)
-using namespace std;
- 
-#define FS first
-#define SC second
-#define PB(t) push_back(t)
-#define ALL(t) t.begin(),t.end()
-#define MP(x, y) make_pair((x), (y))
-#define Fill(a,c) memset(&a, c, sizeof(a))
- 
-typedef pair<int, int> II;
-typedef vector<int> VI;
-typedef vector<II> VII;
- 
-string T;
-const int MAX = 5000;
-int SA[ MAX ], tempSA[ MAX ];
-int RA[ MAX ], tempRA[ MAX ];
-int N;
-//int c[ MAX ];
- 
-int Phi[ MAX ];
-int PLCP[ MAX ];
-int LCP[ MAX ];
- 
-void countingSort( int k ){
-    int i, sum, maxi = max(N*5, N);
-    //memset(c, 0, sizeof c);
-    map<long long, long long>c;
-    map<long long, long long>::iterator it;
- 
-    for( i=0; i < N; i++){
-        c[ (i+k<N)?RA[i+k]:0 ]++;
-    }
-    it = c.begin();
-    for( sum=0; it != c.end(); it++){
-        int t = it->second;//c[i];
-        c[it->first] = sum;
-        sum+=t;
-    }
- 
-    for( i=0; i < N; i++)
-        tempSA[ c[ (SA[i]+k<N)?RA[ SA[i]+k ]:0 ]++ ] = SA[i];
- 
-    for( i=0; i < N; i++)
-        SA[i] = tempSA[i];
+    #include <cstdio> 
+    #include <cstring>
+    #include <iostream>
+    #include <algorithm> 
+    using namespace std; 
+    #define MAXN  1000005 
+    #define MAXLG 17 
+char A[MAXN]; 
+struct entry { 
+    int nr[2], p; 
+} L[MAXN]; 
+int P[MAXLG][MAXN], N, stp,i, cnt;
+int SA[MAXN];
+
+int cmp(struct entry a, struct entry b) { 
+    return a.nr[0] == b.nr[0] ? (a.nr[1] < b.nr[1] ? 1 : 0) : (a.nr[0] < b.nr[0] ? 1 : 0); 
 }
- 
-void constructSA() {
-    int i, k, r;
-    for( i=0; i < N; i++){
-        RA[i] = T[i];
-        SA[i] = i;
-    }
- 
-    for( k=1; k< N; k<<=1 ){
-        countingSort( k );
-        countingSort( 0 );
- 
-        tempRA[ SA[0] ] = r = 0;
- 
-        for( i=1; i < N; i++) {
-            tempRA[ SA[i] ] = (RA[ SA[i] ]==RA[SA[i-1]]
-                               && RA[ SA[i]+k ]==RA[ SA[i-1]+k ]) ? r: ++r;
-        }
- 
-        for( i=0; i < N; i++) {
-            RA[ i ] = tempRA[ i ];
-        }
-        if( RA[ SA[N-1] ] == N-1)
-            break;
-    }
+int pow2[22];
+void power2(){
+    pow2[0]=1;
+    for(int i=1;i < 22;i++) pow2[i]=pow2[i-1]+pow2[i-1];
 }
- 
-void computeLCP(){
-    int i, L;
-    Phi[ SA[0] ] = -1;
- 
-    for( i=1; i < N; i++){
-        Phi[ SA[i] ] = SA[ i-1 ];
-    }
- 
-    for( i=L=0; i < N; i++){
-        if( Phi[i]==-1 ){
-            PLCP[i] = 0;
-            continue;
+int lcp(int x, int y) { 
+    int k, ret = 0; 
+    if (x == y) return N - x; 
+    for (k = stp - 1; k >= 0 && x < N && y < N; k --){
+        if (P[k][x] == P[k][y]){
+            x += pow2[k], y += pow2[k], ret += pow2[k]; 
         }
-        while( T[i+L]==T[ Phi[i]+L] )
-            L++;
- 
-        PLCP[ i ] = L;
-        L = max(L-1, 0);
     }
-    for( i=0; i < N; i++) {
-        LCP[ i ] = PLCP[ SA[ i ] ];
-    }
+    return ret; 
 }
- 
-int main( ){
-#ifndef ONLINE_JUDGE
-//   freopen("input.txt", "rt", stdin);
-//   freopen("output.txt", "wt", stdout);
-#endif
-    ios::sync_with_stdio( false );
-    cin.tie( NULL );
-//
-    for( string s1; cin>>s1;  ){
-        int n, m;
-        n = s1.size();
-        T = s1+"$";
-        //T.PB(0);
-        N = T.size();
-        constructSA();
-        computeLCP();
-        //cout<<T.size()<<":T\n";
-        long long res = 0;
-        for( int i=0; i < N; i++){
-            res+=N-SA[i]-LCP[i]-1;
-        }
-        cout<<res<<"\n";
-        printf("i\tSA[i]\tLCP[i]\tSuffix\n");
-        for (int i = 0; i < N; i++){
-            printf("%d\t%d\t%d\t%s\n", i, SA[i], LCP[i], T.begin());
-        }
- 
+void build(){
+    for (N = strlen(A), i = 0; i < N; i++) 
+        P[0][i] = A[i] - 'a'; 
+    for (stp = 1, cnt = 1; cnt >> 1 < N; stp ++, cnt <<= 1) 
+    { 
+        for (i = 0; i < N; i ++) 
+        { 
+            L[i].nr[0] = P[stp - 1][i]; 
+            L[i].nr[1] = i + cnt < N ? P[stp - 1][i + cnt] : -1; 
+            L[i].p = i; 
+        } 
+        sort(L, L + N, cmp); 
+        for (i = 0; i < N; i ++) 
+            P[stp][L[i].p] = i > 0 && L[i].nr[0] == L[i - 1].nr[0] && L[i].nr[1] == L[i - 1].nr[1] ?P[stp][L[i - 1].p] : i; 
     }
-return 0;
+    for(i=0;i < N; i++)
+        SA[ P[stp-1][i] ] = i;
+}
+int main(void) 
+{ 
+    power2();
+    for(i = 0; i < 22; i++) cout<< pow2[i] << " "; cout<<"\n";
+
+    int m,n, ans=0;
+    cin >> m >> n;
+    cin >> A; 
+    cout<< m << n << A <<"\n";
+        build();
+    for(i = 0; i < n; i++) cout<< SA[i] << " "; cout<<"\n";
+
+    for(i=0;i<=stp;i++){
+        for(int j=0;j<n;j++) cout<<P[i][j]<<" "; cout<<"\n";
+    }
+    for(i = 0; i < (n-m); i++)
+        ans = max( ans , lcp(SA[i], SA[i+m]) ), cout<< lcp(SA[i], SA[i+m]) <<"\n";
+
+    cout << ans <<"\n";
+    return 0;
 }
