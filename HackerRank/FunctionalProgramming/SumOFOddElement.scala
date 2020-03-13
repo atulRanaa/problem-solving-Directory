@@ -1,0 +1,1 @@
+def f(arr:List[Int]):Int = arr.filter(a => (a&1) == 1).reduce(_ + _)
