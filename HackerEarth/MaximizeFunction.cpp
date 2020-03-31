@@ -19,33 +19,9 @@
         #define PI 3.14159265
         #define fast ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
         const double EPS = 1E-9;
-        typedef vector<vector<double>> matrix;
+        typedef vector< vector<double> > matrix;
         typedef vector<int> vi;
 
-// int prime[N];
-
-// void numofFact(int num){
-//     int res = 1;
-//     map<int,int> mapp;
-//     while(num > 1){
-//         mapp[ prime[num]]++;
-//         num /= prime[num];
-//     }
-//     cout<<1;
-//     for(pii e: mapp) for(int i=0;i<e.S;i++) cout<<" x " << e.F;
-
-//     cout << "\n";
-// }
-// void sieve(){
-// 	memset(prime,0,sizeof(prime));
-//     prime[0] = prime[1] = 1;
-    
-//     for(int i = 2; i < N; i++){
-//         if(prime[i]==0){
-//             for(int j=i; j < N;j+=i) prime[j] = i;
-//         }
-//     }
-// }
 ll n,k,ar[N], ans = -1;
 ll S(ll y){
     ll res = 0;

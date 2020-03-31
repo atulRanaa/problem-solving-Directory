@@ -33,16 +33,18 @@ void decimaltoAny(string s,int base){
       else if(temp <= 9){ ch=(char)(temp+48);
            number.push_back(ch);
       }
-   num=num/base;
+    num=num/base;
   }
   reverse(number.begin(),number.end());
-for(int i=0;i<number.size();i++) cout<<number[i];
+  for(int i=0;i<number.size();i++) cout<<number[i];
 }
+
 void decimaltoAny(long int num,int base){
   vector<char> number;
   char ch;
   long int temp;
-  while(num!= 0){temp=num%base;
+  while(num!= 0){
+      temp=num%base;
       if(temp > 9){
         ch=(char)(temp+55);
         number.push_back(ch);
@@ -50,11 +52,12 @@ void decimaltoAny(long int num,int base){
       else if(temp <= 9){ ch=(char)(temp+48);
            number.push_back(ch);
       }
-   num=num/base;
+      num=num/base;
   }
   reverse(number.begin(),number.end());
 for(int i=0;i<number.size();i++) cout<<number[i];
 }
+
 int main(){
   string s;
   int a,b,t;

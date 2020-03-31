@@ -19,21 +19,22 @@
         typedef vector<ll> vi;
  
  
-vector<int> g[N];
+vector< int > graph[N];
 bool used[N];
 int timer, tin[N], fup[N], par[N];
-ll weight[N], w_sum[N];
- 
+
+int sizeOfNode[N];
+
 int n,m;
-set<int> Ap;
-set< pair<int,int> > Br;
-void dfs(int v, int p = 0) {
+set< int > Ap;
+vector< pair<int,int> > Br;
+void dfs(int v, int p = -1) {
     used[v] = true;
     tin[v] = fup[v] = timer++;
     int children = 0;
- 
+    int isArti = false;
     
-    for (int to: g[v]) {
+    for (int to: graph[v]) {
         if (to == p)  continue;
         
         if (used[to])
@@ -42,59 +43,44 @@ void dfs(int v, int p = 0) {
             par[to] = v;
             dfs (to, v);
             fup[v] = min (fup[v], fup[to]);
-            if(fup[to] > tin[v])
-                Br.insert({ min(to,v), max(to,v)});
-                // bridge
-
-            if (fup[to] >= tin[v] && p != 0)
+            if(fup[to] > tin[v]) {
+                Br.push_back({ min(to,v), max(to,v)}); // bridge
+            }
+            if (fup[to] >= tin[v] && p != 0) {
                 Ap.insert(v);             //v is articulation point
+                isArti = true;
+            }
             ++children;
- 
-            w_sum[v]+=w_sum[to];
-        }
+            sizeOfNode[v] += 1;
+         }
         
     }
-    w_sum[v] += weight[v];
-    if (p == 0 && children > 1)
+
+    sizeOfNode[v] += 1;
+    if ((p == 0 && children > 1) || (p!=0 && isArti)){
         Ap.insert(v);                    //v is articulation point
+    }
  
 }
  
 int main() {
-    memset(w_sum,0, sizeof w_sum);
-    memset(used ,0, sizeof used);
+    memset(sizeOfNode, 0, sizeof sizeOfNode);
+
     scanf("%d %d",&n,&m);
     int x,y;
-    //for(int i=1;i<=n;i++) scanf("%lld",weight+i);
     for(int i=0;i<m;i++){
         scanf("%d %d",&x,&y);
-        x++;
-        y++;
-        g[x].push_back(y);
-        g[y].push_back(x);
+        graph[x].push_back(y);
+        graph[y].push_back(x);
     }
     timer = 1;
     
-    par[1] = 0;
-    dfs (1);
+    dfs(0);
     
-    // ll ans=-1;
-    // for(int node: Ap){
-    //     ll val=0, Xor = 0;
-        
-    //     for(int e: g[node]){
-    //         int p = par[node];
-    //         if(e!=p && fup[e]!=fup[p] && par[e]==node){
-    //             val+=w_sum[e], Xor^=w_sum[e];
-    //         }
-    //     }
-    //     Xor^=(w_sum[1]-weight[node]-val);
-    //     ans = max(Xor, ans);
-    // }
-    cout << Ap.size() << "\n";
-    for(int e: Ap) cout<< e-1 << " ";
-    cout<< "\n";
-    cout << Br.size() << "\n";
-    for(pair<int,int> e: Br) cout<< e.first-1 <<" " << e.second-1 <<"\n";
+    for(int i=1;i<=n;i++) cout << tin[i] << " "; cout << "\n";
+    for(int i=1;i<=n;i++) cout << fup[i] << " "; cout << "\n";
+    for(int i=1;i<=n;i++) cout << sizeOfNode[i] << " "; cout << "\n";
+    for(int e: Ap) cout<< e << " "; cout<< "\n";
+    for(pair<int,int> e: Br) cout<< e.first << " " << e.second <<"\n";
     return 0;
 }
