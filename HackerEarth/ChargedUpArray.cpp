@@ -22,30 +22,6 @@
         typedef vector<vector<double>> matrix;
         typedef vector<int> vi;
 
-// int prime[N];
-
-// void numofFact(int num){
-//     int res = 1;
-//     map<int,int> mapp;
-//     while(num > 1){
-//         mapp[ prime[num]]++;
-//         num /= prime[num];
-//     }
-//     cout<<1;
-//     for(pii e: mapp) for(int i=0;i<e.S;i++) cout<<" x " << e.F;
-
-//     cout << "\n";
-// }
-// void sieve(){
-// 	memset(prime,0,sizeof(prime));
-//     prime[0] = prime[1] = 1;
-    
-//     for(int i = 2; i < N; i++){
-//         if(prime[i]==0){
-//             for(int j=i; j < N;j+=i) prime[j] = i;
-//         }
-//     }
-// }
 ll n,ar[N];
 
 ll binaryExponentiation(ll n, ll x){
