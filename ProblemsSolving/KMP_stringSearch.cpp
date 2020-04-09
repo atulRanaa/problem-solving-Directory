@@ -21,11 +21,14 @@ int kmp(const string &p,const string &t){
     n=t.length();
     m=p.length();
     vector< int > F = prefixtable(p);
-   /* for(int i=0;i<F.size();i++) cout<<F[i]<<" ";
+    
+    for(int i=0;i<F.size();i++) cout<<F[i]<<" ";
     cout<<"\n";
     vector< int > E = prefixtable(t);
     for(int i=0;i<E.size();i++) cout<<E[i]<<" ";
-    cout<<"\n";*/
+    cout<<"\n";
+    
+
     while(i<n){
         if(t[i]==p[j]){
             if(j==m-1){ j-=1;c++;}
@@ -42,13 +45,15 @@ int kmp(const string &p,const string &t){
 int main()
 {
     string p,t;
-   /* while(cin>>p){
+
+    while(cin>>p){
     vector< int > F = prefixtable(p);
     for(int i=0;i<F.size();i++) cout<<F[i]<<" ";
     cout<<"\n";
-    }*/
-    cin>>p;
-    cin>>t;
-    cout<<kmp(p,t);
+    }
+    
+    // cin>>p;
+    // cin>>t;
+    // cout<<kmp(p,t);
     return 0;
 }
