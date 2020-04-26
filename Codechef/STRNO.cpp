@@ -35,7 +35,7 @@ ll powerOfPrimeDivisors(ll n) {
     ll cnt = 0;
     while(n % 2 == 0) { n /= 2; cnt++; }
     while(n % 3 == 0) { n /= 3; cnt++; }
-  
+
     for (ll i = 5; i * i <= n; i = i + 6) {
         while(n % i == 0) { n /= i; cnt++; }
         while(n % (i+2) == 0) { n /= (i+2); cnt++; }
