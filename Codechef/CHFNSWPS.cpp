@@ -27,6 +27,8 @@ int main() {
         for(int i = 0; i < n; i++) { cin >> A[i]; CNT[A[i]]++; cntA[A[i]]++;}
         for(int i = 0; i < n; i++) { cin >> B[i]; CNT[B[i]]++; cntB[B[i]]++;}
 
+        ll minEle = min(*min_element(A, A + n), *min_element(B, B + n));
+
         bool f = true;
         for(auto &ele: CNT) if(ele.second & 1) f = false;
 
@@ -45,7 +47,7 @@ int main() {
             sort(all(remove), greater<int> ());
 
             ll cost = 0LL;
-            for(int i = 0; i < add.size(); i++) cost += (ll)min(add[i], remove[i]);
+            for(int i = 0; i < add.size(); i++) cost += min(2 * minEle, (ll)min(add[i], remove[i]));
 
             cout << cost << "\n";
         }
