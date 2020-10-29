@@ -45,18 +45,28 @@ void update(int pos, int value, int n) {
     }
 }
 
-ll rangemaxQuery(ll pos,ll low,ll high,ll qlow,ll qhigh){
-    if(qlow <= low && qhigh >= high)
-        return segtree[pos];
+int range_query(int left, int right, int n) {
+    left += n;
+    right += n;
 
-    if(qlow > high || qhigh < low)
-        return 0;
-    ll mid = ((low + high) >> 1);
-    ll l = rangemaxQuery(2 * pos + 1,low,mid,qlow,qhigh),
-    ll r = rangemaxQuery(2*pos+2,mid+1,high,qlow,qhigh)
-    return max(l, r);
+    int ma = INT_MIN;
+
+    while (left < right) {
+
+        if (left & 1) {
+            ma = max(ma, segtree[left]);
+            left++;
+        }
+        if (right & 1) {
+            right--;
+
+            ma = max(ma, segtree[right]);
+        }
+        left /= 2;
+        right /= 2;
+    }
+    return ma;
 }
-
 
 int main(){
 
@@ -72,7 +82,7 @@ int main(){
         int lower = max(0, ar[i] - k);
         int upper = min(N, ar[i] + k);
 
-        dp[i] = max(dp[i],  rangemaxQuery(0, 0, N + 1, lower, upper));
+        dp[i] = max(dp[i],  range_query(lower, upper, n));
         ml[ ar[i] ] = max(dp[i], ml[ ar[i] ]);
 
 
