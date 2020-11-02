@@ -1,0 +1,45 @@
+define update_cache(x)
+   for y = 0 .. M-1
+      if b[x, y]!=0
+         c[y] = c[y]+1
+      else
+         c[y] = 0
+
+
+define area(11, ur)
+   if 11.x>ur.x or 11.y>ur.y // If ur is left of or
+      return 0               // below 11: return 0
+   else
+      return (ur.x-11.x+1)*(ur.y-11.y+1)
+
+// Variables to keep track of the best rectangle so far: best_ll = (0, 0); best_ur = (-1, -1)
+// The cache starts with all zeros:
+c[0 .. M-1] = 0 // One extra element (closes all rectangles)
+main algorithm:
+   for x = N-1 .. 0
+      update_cache(x)
+      width = 0 // Width of widest opened rectangle
+      for y = 0 .. M
+         if c[y]>width // Opening new rectangle(s)?
+            push(y, width)
+            width = c[y]
+         if c[y]<width // Closing rectangle(s)?
+            do
+               (y0, w0)= pop()
+               if width*(y-y0) > area(best_ll, best_ur)
+                  best_ll = (x, y0)
+                  best_ur = (x + width - 1, y - 1)
+               width = w0
+            until c[y]>=width
+            width = c[y]
+            if width!=0 // Popped an active "opening"?
+               push(y0, width)
+{1, 1, 1, 1, 1, 1, 1, 0},
+{1, 1, 1, 1, 1, 1, 1, 0},
+{1, 0, 1, 0, 0, 0, 0, 0},
+{1, 0, 1, 0, 0, 0, 1, 0},
+{1, 0, 0, 1, 1, 1, 1, 0},
+{1, 0, 0, 1, 1, 1, 1, 0},
+{1, 0, 0, 0, 0, 0, 1, 0},
+{1, 1, 1, 0, 0, 0, 1, 0},
+{1, 1, 1, 1, 1, 1, 1, 0}
