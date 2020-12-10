@@ -4,10 +4,10 @@
 #include <utility>
 using std::queue;
 using std::pair;
- 
+
 const int MAXN = 100005;
 const int MAXM = MAXN * 2;
- 
+
 struct Edge {
   int r, c, next;
   Edge() {}
@@ -17,16 +17,16 @@ int x[MAXN], re[MAXN], dep[MAXN];
 int dis[MAXN], st[MAXN], ed[MAXN], go[MAXN][17];
 int bit[MAXN];
 int tot, n, dfsid;
- 
+
 inline int Lowbit(int x) { return x & -x; }
- 
+
 void Add(int l, int r, int c) {
   ln[tot] = Edge(r, c, x[l]);
   x[l] = tot++;
   ln[tot] = Edge(l, c, x[r]);
   x[r] = tot++;
 }
- 
+
 void DFS(int p, int depth, int d, int par) {
   // DFS the tree to find the start and end position of each subtree in the DFS sequence.
   st[p] = dfsid++;
@@ -42,7 +42,7 @@ void DFS(int p, int depth, int d, int par) {
   }
   ed[p] = dfsid;
 }
- 
+
 void Init() {
   tot = 2;
   assert(scanf("%d", &n) == 1);
@@ -64,13 +64,13 @@ void Init() {
     }
   }
 }
- 
+
 // BIT
 void Insert(int x, int v) {
   for ( ; x <= n; x += Lowbit(x))
     bit[x] += v;
 }
- 
+
 // BIT
 int GetSum(int x) {
   int ret = 0;
@@ -78,7 +78,7 @@ int GetSum(int x) {
     ret += bit[x];
   return ret;
 }
- 
+
 int GetLCA(int u, int v) {
   if (dep[u] < dep[v]) std::swap(u, v);
   int diff = dep[u] - dep[v];
@@ -96,7 +96,7 @@ int GetLCA(int u, int v) {
   }
   return go[u][0];
 }
- 
+
 void Query1(int i, int c) {
   int diff = c - ln[i * 2].c;
   ln[i * 2].c = c;
@@ -104,7 +104,7 @@ void Query1(int i, int c) {
   Insert(st[re[i]], diff);
   Insert(ed[re[i]], -diff);
 }
- 
+
 int Query2(int u, int v) {
   int w = GetLCA(u, v);
   int ret = dis[u] + dis[v] - dis[w] * 2;
@@ -113,7 +113,7 @@ int Query2(int u, int v) {
   ret -= GetSum(st[w]) * 2;
   return ret;
 }
- 
+
 void Work() {
   int q;
   assert(scanf("%d", &q) == 1);
@@ -129,7 +129,7 @@ void Work() {
     }
   }
 }
- 
+
 int main() {
   int cases = 1;
   while (cases--) {
@@ -137,4 +137,4 @@ int main() {
     Work();
   }
   return 0;
-} 
+}
